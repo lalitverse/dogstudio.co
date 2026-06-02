@@ -30,10 +30,3 @@ This is an independent learning project inspired by the visual style and user ex
 
 All trademarks, branding, and original content belong to their respective owners. This project is not affiliated with or endorsed by Dogstudio.
 
-## Installation
-
-```bash
-git clone <repository-url>
-cd project-name
-npm install
-npm run dev
