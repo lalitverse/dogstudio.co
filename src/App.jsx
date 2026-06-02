@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import './App.css'
 import Dog from './components/Dog'
 import { Canvas } from '@react-three/fiber'
 
 function App() {
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isShowReelOpen, setIsShowReelOpen] = useState(false)
 
   return (
     <>
@@ -50,10 +52,10 @@ function App() {
                 <path d="M30.4351,61.1758h-10.4155L0,116.838H10.3479L30.4351,61.1758Z"></path>
               </svg>
             </div>
-            <div className="nav-elem">
+            <div className="nav-elem" onClick={() => setIsShowReelOpen(true)} style={{cursor: 'pointer'}}>
               <i className="ri-arrow-right-s-line"></i> Our Show reel
             </div>
-            <div className="nav-elem">
+            <div className="nav-elem" onClick={() => setIsMenuOpen(true)} style={{cursor: 'pointer'}}>
               <i className="ri-menu-3-line"></i>
             </div>
           </nav>
@@ -114,6 +116,33 @@ function App() {
         </section>
         <section id='section-3' ></section>
       </main>
+
+      {/* Side Navigation Menu */}
+      <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
+        <div className="close-btn" onClick={() => setIsMenuOpen(false)}>
+           <i className="ri-close-line"></i>
+        </div>
+        <ul>
+          <li><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+          <li><a href="#work" onClick={() => setIsMenuOpen(false)}>Work</a></li>
+          <li><a href="#studio" onClick={() => setIsMenuOpen(false)}>Studio</a></li>
+          <li><a href="#news" onClick={() => setIsMenuOpen(false)}>News</a></li>
+          <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+        </ul>
+      </div>
+
+      {/* Video Modal */}
+      <div className={`modal-overlay ${isShowReelOpen ? 'open' : ''}`}>
+        <div className="close-btn" onClick={() => setIsShowReelOpen(false)}>
+          <i className="ri-close-line"></i>
+        </div>
+        {isShowReelOpen && (
+          <video controls autoPlay>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
+      </div>
     </>
   )
 }
